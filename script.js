@@ -86,6 +86,23 @@ document.querySelectorAll('.faq-question').forEach(btn => {
   });
 });
 
+// Scroll to anchor on load
+const hash = window.location.hash;
+if (hash) {
+  const target = document.querySelector(hash);
+  if (target) {
+    if (target.classList.contains('faq-item')) {
+      const answer = target.querySelector('.faq-answer');
+      if (answer) {
+        target.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+    const block = target.classList.contains('service-detail') ? 'center' : 'start';
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block }), 350);
+  }
+}
+
 // Contact form (mailto handoff)
 const form = document.getElementById('contact-form');
 if (form) {
